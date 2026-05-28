@@ -12,7 +12,7 @@
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license">
   </a>
-  <img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen" alt="node version">
+  <img src="https://img.shields.io/badge/node-%3E%3D20-brightgreen" alt="node version">
   <img src="https://img.shields.io/badge/types-TypeScript-blue" alt="typescript">
 </p>
 
@@ -61,7 +61,7 @@
 npm install shopeepay-sdk
 ```
 
-> Requires **Node.js >= 18**.
+> Requires **Node.js >= 20**.
 
 ---
 
@@ -351,7 +351,7 @@ This project uses [GitHub Actions](.github/workflows/ci.yml) for CI. The workflo
 | `npm test` | Run unit tests |
 | `npm run build` | Build ESM, CJS, and type declarations |
 
-The CI matrix tests against **Node.js 18, 20, and 22**.
+The CI matrix tests against **Node.js 20 and 22**.
 
 ---
 

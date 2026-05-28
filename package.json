@@ -1,6 +1,6 @@
 {
   "name": "shopeepay-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "TypeScript SDK for ShopeePay Payment Gateway APIs.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -43,7 +43,7 @@
     "url": "https://github.com/phamkhanhminhman97/shopeepay-sdk/issues"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
