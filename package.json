@@ -21,6 +21,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "prepack": "npm run build"
   },
@@ -31,8 +32,16 @@
     "gateway",
     "sdk"
   ],
-  "author": "",
+  "author": "phamkhanhminhman97",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phamkhanhminhman97/shopeepay-sdk.git"
+  },
+  "homepage": "https://github.com/phamkhanhminhman97/shopeepay-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/phamkhanhminhman97/shopeepay-sdk/issues"
+  },
   "engines": {
     "node": ">=18"
   },

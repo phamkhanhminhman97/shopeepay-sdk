@@ -156,16 +156,20 @@ export class ShopeePayModule {
     return safeCompareSignatures(this.signPayload(payload), signature);
   }
 
-  verifyWebhook<TData = unknown>(payload: unknown, signature: string): ShopeePayWebhookEvent<TData> {
+  verifyNotification<TPayload>(payload: unknown, signature: string): TPayload {
     if (!this.verifySignature(payload, signature)) {
       throw new Error("Invalid ShopeePay webhook signature.");
     }
 
     if (typeof payload === "string") {
-      return JSON.parse(payload) as ShopeePayWebhookEvent<TData>;
+      return JSON.parse(payload) as TPayload;
     }
 
-    return payload as ShopeePayWebhookEvent<TData>;
+    return payload as TPayload;
+  }
+
+  verifyWebhook<TData = unknown>(payload: unknown, signature: string): ShopeePayWebhookEvent<TData> {
+    return this.verifyNotification<ShopeePayWebhookEvent<TData>>(payload, signature);
   }
 
   private async request<TResponse>(method: HttpMethod, path: string, body?: unknown): Promise<TResponse> {

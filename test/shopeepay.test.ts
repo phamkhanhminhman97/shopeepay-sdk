@@ -83,6 +83,29 @@ describe("ShopeePay SDK", () => {
     await expect(client.getCheckoutStatus("SPP-404")).rejects.toBeInstanceOf(ShopeePayError);
   });
 
+  it("verifies both payment webhooks and account-link notifications", () => {
+    const client = new ShopeePayModule({
+      clientId: "client-id",
+      secretKey: "secret",
+      region: "ID"
+    });
+
+    const paymentPayload =
+      '{"event_type":"checkout.successful","event_id":"evt-1","timestamp":"2026-05-25T10:00:00+07:00","created_at":"2026-05-25T09:59:00+07:00","updated_at":"2026-05-25T10:00:00+07:00","data":{"checkout_id":"SPP-1"}}';
+    const accountLinkPayload =
+      '{"request_id":"req-link","linking_reference_id":"link-ref-1","merchant_ext_id":"merchant","update_type":1}';
+
+    const paymentEvent = client.verifyWebhook(paymentPayload, createSignature(paymentPayload, "secret"));
+    const accountLinkEvent = client.verifyNotification<{ linking_reference_id: string; update_type: number }>(
+      accountLinkPayload,
+      createSignature(accountLinkPayload, "secret")
+    );
+
+    expect(paymentEvent.event_type).toBe("checkout.successful");
+    expect(accountLinkEvent.linking_reference_id).toBe("link-ref-1");
+    expect(accountLinkEvent.update_type).toBe(1);
+  });
+
   it("sends signed V3 checkout order requests", async () => {
     const fetchMock = createJsonFetchMock({
       request_id: "req-1",
